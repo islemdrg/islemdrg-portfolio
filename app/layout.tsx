@@ -3,9 +3,14 @@ import type { Metadata, Viewport } from 'next'
 import './globals.css'
 
 export const metadata: Metadata = {
-  title: 'v0 App',
-  description: 'Created with v0',
-  generator: 'v0.app',
+  title: 'Islem Darghouth — AI Engineering Student',
+  description: 'Portfolio of Islem Darghouth, an AI Engineering student at ESPRIT focused on LLMs, deep learning, NLP and computer vision.',
+  generator: 'Next.js',
+  openGraph: {
+    title: 'Islem Darghouth — AI Engineering Student',
+    description: 'AI Engineering student at ESPRIT building useful systems with language, vision and data.',
+    type: 'website',
+  },
   icons: {
     icon: [
       {

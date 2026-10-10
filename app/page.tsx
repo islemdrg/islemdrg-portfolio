@@ -1,47 +1,59 @@
+'use client'
+
+import { useState } from 'react'
+import { motion, useReducedMotion } from 'framer-motion'
+import { ArrowUpRight, Download, Mail, Menu, X, ExternalLink, Send, Check } from 'lucide-react'
+
+const content = {
+  en: {
+    nav: ['About', 'Exchange', 'Skills', 'Experience', 'Projects', 'Credentials', 'Contact'],
+    heroKicker: 'Artificial Intelligence Engineering · ESPRIT · Tunis',
+    heroTitle: "Hi, I'm Islem Darghouth",
+    heroSub: 'AI Engineering Student at ESPRIT | LLMs, Deep Learning, NLP & Computer Vision',
+    availability: 'Open to an exchange semester (S9, 2027) and AI internships abroad',
+    projects: 'View projects', cv: 'Download CV',
+    aboutTitle: 'I turn complex AI systems into useful products.',
+    about: 'I am a 4th-year Artificial Intelligence Engineering student at ESPRIT, building at the intersection of language, vision and data. My work spans private banking applications, multimodal health research and tools for emerging teams. I am looking toward an international S9 exchange in September 2027 and an AI internship abroad.',
+    stats: [['05', 'AI & software projects'], ['01', 'Bank AI internship'], ['01', '42h hackathon medal'], ['04', 'Certifications']],
+    exchangeTitle: 'Why an exchange semester', exchangeText: 'An international semester would place my engineering training in a research-led environment and give me the right setting to deepen my work in multimodal AI.',
+    bring: 'What I bring', recommendation: 'Recommendation letters available on request.',
+    columns: [
+      ['Academic profile', '4th-year student · 2nd year of the engineering cycle at ESPRIT · French B2 · English B2'],
+      ['Technical strengths', 'LLM pipelines · multimodal deep learning · NLP · computer vision · data products'],
+      ['Goals', 'Deepen multimodal AI · build an international network · carry out my PFE with a research or industry link'],
+    ],
+    skillsTitle: 'A focused technical toolkit',
+    skills: { 'AI & Data': ['LLM pipelines', 'Deep Learning', 'NLP', 'Computer Vision', 'Pandas', 'Machine Learning'], 'Programming': ['Python', 'SQL', 'Dart'], 'Frameworks & Tools': ['Qwen', 'Ollama', 'Flask', 'Django', 'Jira REST API', 'Power BI', 'Jupyter', 'FlutterFlow'], Languages: ['French B2', 'English B2'], 'Soft skills': ['Teamwork & Agile', 'Performance under pressure', 'Communication', 'Adaptability', 'Initiative'] },
+    experienceTitle: 'Experience in the field',
+    experience: [{ date: 'JUL — AUG 2026', role: 'AI & Software Engineering Intern', org: 'Attijari Bank · TechOffice', text: 'Built a private internal AI application supporting the Change Advisory Board process. Designed an LLM pipeline with Qwen and Ollama to evaluate 1,090 parent Jira tickets, then automated the processing and synchronization of 6,713 sub-tasks linked to 697 parent tickets using Python, Pandas, Jira REST API, Flask and SQLite. Delivered an interactive dashboard with quality indicators, recommendations and reports.' }, { date: 'JUL 2024', role: 'Communication Intern', org: 'GarciCom', text: 'Supported communication and content initiatives in a professional agency environment.' }],
+    projectsTitle: 'Selected projects', projectLabel: 'Case study', private: 'Private project',
+    projectData: [{ title: 'Multimodal AI for Reproductive Health', period: 'Ongoing', tags: ['Multimodal AI', 'Deep Learning', 'Health'], desc: 'An ongoing exploration of multimodal systems for reproductive health.', result: 'Ongoing research project' }, { title: 'AI Consulting Platform for Startups', period: 'JAN — MAY 2026', tags: ['Deep Learning', 'NLP', 'Computer Vision'], desc: 'Multimodal social media analysis combining computer vision with NLP to support startup decisions.', result: 'Academic team project' }, { title: 'Worki', period: 'SEP — DEC 2025', tags: ['Django', 'Jira', 'Agile'], desc: 'A freelance, internships and training hub. Built the freelance module and served as Scrum Master for one sprint.', result: 'Product prototype' }, { title: 'US Food Data Analysis & Prediction', period: 'SEP — DEC 2025', tags: ['Python', 'ML', 'Power BI'], desc: 'Data analysis and prediction workflow built in Python, Jupyter and Power BI.', result: 'Academic data project' }, { title: 'House-Sharing Mobile App', period: 'APR — MAY 2026', tags: ['FlutterFlow', 'Mobile'], desc: 'A mobile experience designed around finding and sharing housing.', result: 'Mobile prototype' }],
+    credentialsTitle: 'Credentials & community', medal: 'MaraTech 42-hour hackathon · IEEE · Jan 2026', medalText: 'Medal and certificate for an accessibility platform with an AI avatar sign-language system.', member: 'IEEE ESPRIT member', certs: ['NVIDIA Deep Learning Fundamentals', 'NVIDIA Generative AI with Diffusion Models', 'Cisco AI Fundamentals', 'Cisco Introduction to Data Science'], view: 'View certificate',
+    contactTitle: "Let's talk", contactText: 'For exchange committees, professors and recruiters: I would be glad to discuss my work, goals and fit.', name: 'Name', email: 'Email', subject: 'Subject', message: 'Message', send: 'Open email', sent: 'Your email draft is ready.', options: ['Exchange', 'Internship', 'Collaboration', 'Other'], footer: 'Built with Next.js', back: 'Back to top'
+  },
+  fr: {
+    nav: ['À propos', 'Échange', 'Compétences', 'Expérience', 'Projets', 'Certifications', 'Contact'],
+    heroKicker: 'Génie de l’intelligence artificielle · ESPRIT · Tunis', heroTitle: 'Bonjour, je suis Islem Darghouth', heroSub: 'Étudiant en génie IA à l’ESPRIT | LLMs, deep learning, NLP & computer vision', availability: 'Ouvert à un semestre d’échange (S9, 2027) et aux stages IA à l’étranger', projects: 'Voir les projets', cv: 'Télécharger le CV', aboutTitle: 'Je transforme des systèmes IA complexes en produits utiles.', about: 'Je suis étudiant en 4e année de génie de l’intelligence artificielle à l’ESPRIT, à l’intersection du langage, de la vision et de la donnée. Mes projets couvrent des applications bancaires privées, la recherche en santé multimodale et des outils pour les équipes émergentes. Je prépare un échange international en S9 en septembre 2027 et un stage IA à l’étranger.', stats: [['05', 'Projets IA & logiciels'], ['01', 'Stage IA bancaire'], ['01', 'Médaille hackathon 42h'], ['04', 'Certifications']], exchangeTitle: 'Pourquoi un échange', exchangeText: 'Un semestre international me permettrait d’intégrer un environnement orienté recherche et d’approfondir mon travail en IA multimodale.', bring: 'Ce que j’apporte', recommendation: 'Lettres de recommandation disponibles sur demande.', columns: [['Profil académique', 'Étudiant en 4e année · 2e année du cycle ingénieur à l’ESPRIT · Français B2 · Anglais B2'], ['Forces techniques', 'Pipelines LLM · deep learning multimodal · NLP · computer vision · produits data'], ['Objectifs', 'Approfondir l’IA multimodale · construire un réseau international · réaliser mon PFE avec un lien recherche ou industrie']], skillsTitle: 'Une boîte à outils ciblée', skills: { 'IA & Data': ['Pipelines LLM', 'Deep Learning', 'NLP', 'Computer Vision', 'Pandas', 'Machine Learning'], Programmation: ['Python', 'SQL', 'Dart'], 'Frameworks & outils': ['Qwen', 'Ollama', 'Flask', 'Django', 'Jira REST API', 'Power BI', 'Jupyter', 'FlutterFlow'], Langues: ['Français B2', 'Anglais B2'], 'Soft skills': ['Travail en équipe & Agile', 'Performance sous pression', 'Communication', 'Adaptabilité', 'Initiative'] }, experienceTitle: 'Expérience terrain', experience: [{ date: 'JUIL — AOÛT 2026', role: 'Stagiaire ingénierie IA & logiciel', org: 'Attijari Bank · TechOffice', text: 'Conception d’une application IA interne et privée pour le processus du Change Advisory Board. Pipeline LLM avec Qwen et Ollama pour évaluer 1 090 tickets Jira parents, puis automatisation du traitement et de la synchronisation de 6 713 sous-tâches liées à 697 tickets parents avec Python, Pandas, Jira REST API, Flask et SQLite. Livraison d’un dashboard interactif avec indicateurs qualité, recommandations et rapports.' }, { date: 'JUIL 2024', role: 'Stagiaire communication', org: 'GarciCom', text: 'Contribution aux initiatives de communication et de contenu dans un environnement d’agence.' }], projectsTitle: 'Projets sélectionnés', projectLabel: 'Étude de cas', private: 'Projet privé', projectData: [{ title: 'IA multimodale pour la santé reproductive', period: 'En cours', tags: ['IA multimodale', 'Deep Learning', 'Santé'], desc: 'Exploration de systèmes multimodaux pour la santé reproductive.', result: 'Projet de recherche en cours' }, { title: 'Plateforme de conseil IA pour startups', period: 'JAN — MAI 2026', tags: ['Deep Learning', 'NLP', 'Computer Vision'], desc: 'Analyse multimodale des réseaux sociaux combinant vision par ordinateur et NLP.', result: 'Projet académique en équipe' }, { title: 'Worki', period: 'SEP — DÉC 2025', tags: ['Django', 'Jira', 'Agile'], desc: 'Hub freelance, stages et formations. Module freelance développé et rôle de Scrum Master pour un sprint.', result: 'Prototype produit' }, { title: 'Analyse & prédiction de données alimentaires US', period: 'SEP — DÉC 2025', tags: ['Python', 'ML', 'Power BI'], desc: 'Workflow d’analyse et de prédiction en Python, Jupyter et Power BI.', result: 'Projet data académique' }, { title: 'Application mobile de colocation', period: 'AVR — MAI 2026', tags: ['FlutterFlow', 'Mobile'], desc: 'Expérience mobile pensée autour de la recherche et du partage de logements.', result: 'Prototype mobile' }], credentialsTitle: 'Certifications & communauté', medal: 'Hackathon MaraTech 42h · IEEE · jan. 2026', medalText: 'Médaille et certificat pour une plateforme d’accessibilité avec avatar IA en langue des signes.', member: 'Membre IEEE ESPRIT', certs: ['NVIDIA Deep Learning Fundamentals', 'NVIDIA Generative AI with Diffusion Models', 'Cisco AI Fundamentals', 'Cisco Introduction to Data Science'], view: 'Voir le certificat', contactTitle: 'Parlons-en', contactText: 'Pour les comités d’échange, professeurs et recruteurs : je serais heureux d’échanger sur mes projets et objectifs.', name: 'Nom', email: 'E-mail', subject: 'Sujet', message: 'Message', send: 'Ouvrir l’e-mail', sent: 'Votre brouillon est prêt.', options: ['Échange', 'Stage', 'Collaboration', 'Autre'], footer: 'Créé avec Next.js', back: 'Retour en haut'
+  }
+} as const
+
+function Section({ number, id, children }: { number: string; id: string; children: React.ReactNode }) { return <section id={id} className="portfolio-section"><div className="section-number">{number}</div>{children}</section> }
+
 export default function Page() {
-  return (
-    <main
-      style={{
-        colorScheme: 'light dark',
-        position: 'relative',
-        display: 'flex',
-        minHeight: '100vh',
-        alignItems: 'center',
-        justifyContent: 'center',
-        backgroundColor: 'light-dark(#fff, #000)',
-        color: 'light-dark(#000, #fff)',
-      }}
-    >
-      <svg
-        aria-hidden="true"
-        style={{ width: 80, height: 80 }}
-        width={80}
-        height={80}
-        fill="none"
-        viewBox="0 0 20 20"
-        xmlns="http://www.w3.org/2000/svg"
-        stroke="currentColor"
-        strokeWidth="0.5"
-      >
-        <path
-          d="M14.2 14.2H17V6.9375C17 4.76288 15.2371 3 13.0625 3H5.8V5.8M14.2 14.2V7.79063L7.79062 14.2H14.2ZM14.2 14.2V17H6.9375C4.76288 17 3 15.2371 3 13.0625V5.8H5.8M5.8 5.8V12.2313L12.2313 5.8H5.8Z"
-          strokeLinejoin="round"
-        />
-      </svg>
-      <p
-        style={{
-          position: 'absolute',
-          left: '50%',
-          top: 'calc(50% + 56px)',
-          transform: 'translateX(-50%)',
-          whiteSpace: 'nowrap',
-          fontSize: '14px',
-          fontWeight: 500,
-          color: 'light-dark(#71717a, #a1a1aa)',
-        }}
-      >
-        Your v0 generation will show here.
-      </p>
-    </main>
-  )
+  const [lang, setLang] = useState<'en' | 'fr'>('en'); const [light, setLight] = useState(false); const [menu, setMenu] = useState(false); const [sent, setSent] = useState(false); const [selected, setSelected] = useState(0); const reduce = useReducedMotion(); const t = content[lang]
+  const reveal = { initial: { opacity: 0, y: reduce ? 0 : 24 }, whileInView: { opacity: 1, y: 0 }, viewport: { once: true, amount: 0.15 }, transition: { duration: 0.65 } }
+  function submit(e: React.FormEvent<HTMLFormElement>) { e.preventDefault(); const data = new FormData(e.currentTarget); const body = encodeURIComponent(`${data.get('message')}\n\nFrom: ${data.get('name')} (${data.get('email')})`); window.location.href = `mailto:islem.darghouth@example.com?subject=${encodeURIComponent(String(data.get('subject')))}&body=${body}`; setSent(true) }
+  return <div className={light ? 'site light' : 'site'}>
+    <header className="nav"><a className="wordmark" href="#top">ISLEM<span>·</span>DRG</a><button className="menu-button" aria-label="Toggle navigation" onClick={() => setMenu(!menu)}>{menu ? <X /> : <Menu />}</button><nav className={menu ? 'nav-links open' : 'nav-links'}>{t.nav.map((item, i) => <a key={item} href={`#${['about','exchange','skills','experience','projects','credentials','contact'][i]}`} onClick={() => setMenu(false)}>{String(i + 1).padStart(2, '0')} {item}</a>)}<button className="theme-toggle" onClick={() => setLight(!light)} aria-label="Toggle theme">{light ? 'DARK' : 'LIGHT'}</button><button className="lang-toggle" onClick={() => setLang(lang === 'en' ? 'fr' : 'en')}>{lang === 'en' ? 'FR' : 'EN'}</button></nav></header>
+    <main id="top">
+      <section className="hero"><div className="network" aria-hidden="true">{Array.from({ length: 15 }).map((_, i) => <i key={i} style={{ '--i': i } as React.CSSProperties} />)}</div><motion.div {...reveal} className="hero-copy"><p className="eyebrow">{t.heroKicker}</p><h1>{t.heroTitle}</h1><p className="hero-sub">{t.heroSub}</p><div className="availability"><span />{t.availability}</div><div className="hero-actions"><a className="button primary" href="#projects">{t.projects} <ArrowUpRight data-icon="inline-end" /></a><a className="button secondary" href="/cv-islem-darghouth.pdf" download>{t.cv} <Download data-icon="inline-end" /></a></div><div className="socials"><a href="https://github.com/islemdrg" aria-label="GitHub">GH</a><a href="https://www.linkedin.com/in/islem-darghouth/" aria-label="LinkedIn">in</a></div></motion.div><div className="hero-index">AI<span>/</span>01</div></section>
+      <Section number="01" id="about"><motion.div {...reveal} className="section-grid"><div><p className="eyebrow">01 / About</p><h2>{t.aboutTitle}</h2></div><div><p className="body-large">{t.about}</p><div className="stats">{t.stats.map(([n, label]) => <div className="stat" key={label}><strong>{n}</strong><span>{label}</span></div>)}</div></div></motion.div></Section>
+      <Section number="02" id="exchange"><motion.div {...reveal}><p className="eyebrow">02 / Exchange semester</p><div className="section-heading"><h2>{t.exchangeTitle}</h2><p className="body-large">{t.exchangeText}</p></div><div className="three-columns">{t.columns.map(([title, text]) => <article key={title}><span className="mini-index">0{t.columns.indexOf([title, text] as never) + 1}</span><h3>{title}</h3><p>{text}</p></article>)}</div><p className="recommendation"><Check /> {t.recommendation}</p></motion.div></Section>
+      <Section number="03" id="skills"><motion.div {...reveal}><p className="eyebrow">03 / Skills</p><h2>{t.skillsTitle}</h2><div className="skill-grid">{Object.entries(t.skills).map(([group, values]) => <div className="skill-group" key={group}><h3>{group}</h3><div className="chips">{values.map(v => <span key={v}>{v}</span>)}</div></div>)}</div></motion.div></Section>
+      <Section number="04" id="experience"><motion.div {...reveal}><p className="eyebrow">04 / Experience</p><h2>{t.experienceTitle}</h2><div className="timeline">{t.experience.map(item => <article className="timeline-item" key={item.role}><div className="timeline-date">{item.date}</div><div><h3>{item.role}</h3><p className="org">{item.org}</p><p>{item.text}</p></div></article>)}</div></motion.div></Section>
+      <Section number="05" id="projects"><motion.div {...reveal}><p className="eyebrow">05 / Projects</p><h2>{t.projectsTitle}</h2><div className="project-grid">{t.projectData.map((p, i) => <button className={`project-card ${i === 0 ? 'featured' : ''}`} key={p.title} onClick={() => setSelected(i)}><span className="card-top"><span>{p.period}</span><ArrowUpRight /></span><h3>{p.title}</h3><p>{p.desc}</p><div className="card-bottom"><span>{p.result}</span><span className="card-arrow">↗</span></div></button>)}</div><div className="case-study"><span>{t.projectLabel} {String(selected + 1).padStart(2, '0')}</span><strong>{t.projectData[selected].title}</strong><p>{t.projectData[selected].desc} {selected === 0 ? t.private : t.projectData[selected].result}.</p></div></motion.div></Section>
+      <Section number="06" id="credentials"><motion.div {...reveal}><p className="eyebrow">06 / Credentials</p><h2>{t.credentialsTitle}</h2><div className="credentials-grid"><article className="medal"><span className="credential-mark">M</span><h3>{t.medal}</h3><p>{t.medalText}</p></article><article className="certs"><p className="eyebrow">{t.member}</p>{t.certs.map((c, i) => <div className="cert" key={c}><span>0{i + 1}</span><strong>{c}</strong><a href="#contact">{t.view} <ExternalLink /></a></div>)}</article></div></motion.div></Section>
+      <Section number="07" id="contact"><motion.div {...reveal} className="contact-grid"><div><p className="eyebrow">07 / Contact</p><h2>{t.contactTitle}</h2><p className="body-large">{t.contactText}</p><a className="email-link" href="mailto:islem.darghouth@example.com"><Mail /> islem.darghouth@example.com</a></div><form onSubmit={submit}><label>{t.name}<input name="name" required /></label><label>{t.email}<input name="email" type="email" required /></label><label>{t.subject}<select name="subject">{t.options.map(o => <option key={o}>{o}</option>)}</select></label><label>{t.message}<textarea name="message" rows={4} required /></label><button className="button primary" type="submit">{sent ? t.sent : t.send} <Send data-icon="inline-end" /></button></form></motion.div></Section>
+    </main><footer><span>© 2026 Islem Darghouth</span><span>{t.footer}</span><a href="#top">{t.back} ↑</a></footer>
+  </div>
 }
