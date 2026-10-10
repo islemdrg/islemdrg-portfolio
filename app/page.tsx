@@ -23,7 +23,7 @@ const content = {
     projects: 'View projects', cv: 'Download CV',
     aboutTitle: 'I turn complex AI systems into useful products.',
     about: 'I am a 4th-year Artificial Intelligence Engineering student at ESPRIT, building at the intersection of language, vision and data. My work spans private banking applications, multimodal health research and tools for emerging teams. I care about turning complex systems into clear, useful products with measurable value.',
-    stats: [['05', 'AI & software projects'], ['02', 'Professional Experiences '42h hackathon medal'], ['09', 'Certifications']],
+    stats: [['05', 'AI & software projects'], ['02', 'Professional Experiences'42h hackathon medal'], ['09', 'Certifications']],
 
     bring: 'What I bring', recommendation: 'Recommendation letters available on request.',
     columns: [
