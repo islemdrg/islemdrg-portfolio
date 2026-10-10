@@ -2,7 +2,16 @@
 
 import { useState } from 'react'
 import { motion, useReducedMotion } from 'framer-motion'
-import { ArrowUpRight, Download, Mail, Menu, X, ExternalLink, Send, Check } from 'lucide-react'
+import {
+  ArrowUpRight,
+  Download,
+  Mail,
+  Menu,
+  X,
+  ExternalLink,
+  Send,
+  Check,
+} from 'lucide-react'
 
 const content = {
   en: {
