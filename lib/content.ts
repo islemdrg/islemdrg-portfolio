@@ -85,7 +85,7 @@ export type Content = {
 
 export const content: Record<Lang, Content> = {
   en: {
-    nav: ['About','Skills', 'Experience', 'Projects', 'Credentials', 'Contact'],
+    nav: ['About', 'Skills', 'Experience', 'Projects', 'Credentials', 'Contact'],
     heroKicker: 'Artificial Intelligence Engineering · ESPRIT · Tunis',
     heroTitle: "Hi, I'm Islem Darghouth",
     heroSub: 'AI Engineering Student at ESPRIT | LLMs, Deep Learning, NLP & Computer Vision',
@@ -101,7 +101,6 @@ export const content: Record<Lang, Content> = {
       ['01', 'Hackathon medal (42h)'],
       ['05', 'Certifications'],
     ],
-   
     bring: 'What I bring',
     columns: [
       ['Academic profile', '4th-year student · 2nd year of the engineering cycle at ESPRIT · French B2 · English B2'],
@@ -214,7 +213,7 @@ export const content: Record<Lang, Content> = {
     menu: 'Toggle navigation',
   },
   fr: {
-    nav: ['À propos', 'Échange', 'Compétences', 'Expérience', 'Projets', 'Certifications', 'Contact'],
+    nav: ['À propos', 'Compétences', 'Expérience', 'Projets', 'Certifications', 'Contact'],
     heroKicker: 'Génie de l’intelligence artificielle · ESPRIT · Tunis',
     heroTitle: 'Bonjour, je suis Islem Darghouth',
     heroSub: 'Étudiante en génie IA à ESPRIT | LLMs, Deep Learning, NLP & Vision par ordinateur',
@@ -226,9 +225,9 @@ export const content: Record<Lang, Content> = {
       'Je suis étudiante en 4e année de génie de l’intelligence artificielle à ESPRIT. Je travaille à la croisée du langage, de la vision et de la donnée. Mes travaux couvrent une application IA pour une banque, de la recherche en IA multimodale et des projets d’équipe en NLP, vision par ordinateur et génie logiciel. Mon objectif : des produits clairs et utiles à partir de systèmes complexes.',
     stats: [
       ['05', 'Projets IA & logiciels'],
-      ['01', 'Stage IA en banque'],
+      ['02', 'Expériences professionnelles'],
       ['01', 'Médaille hackathon (42h)'],
-      ['04', 'Certifications'],
+      ['05', 'Certifications'],
     ],
     bring: 'Ce que j’apporte',
     columns: [
@@ -321,6 +320,7 @@ export const content: Record<Lang, Content> = {
       { title: 'Generative AI with Diffusion Models', issuer: 'NVIDIA', url: '' },
       { title: 'AI Fundamentals', issuer: 'Cisco', url: '' },
       { title: 'Introduction to Data Science', issuer: 'Cisco', url: '' },
+      { title: 'Project Management Agile', issuer: 'HP', url: '' },
     ],
     view: 'Voir le certificat',
     contactTitle: 'Parlons-en',
