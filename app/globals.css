@@ -39,3 +39,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
   .button { white-space: nowrap; }
   .hero-index { display: none; }
 }
+
+/* Bloc "What I bring" placé sous la présentation (section About) */
+.about-bring { margin-top: 90px; }
+.about-bring > .eyebrow { margin-bottom: 8px; }
