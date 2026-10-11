@@ -99,9 +99,9 @@ export const content: Record<Lang, Content> = {
       'I am a 4th-year Artificial Intelligence Engineering student at ESPRIT, building at the intersection of language, vision and data. My work spans an AI application for a bank, multimodal AI research and team projects in NLP, computer vision and software engineering. I care about turning complex systems into clear, useful products.',
     stats: [
       ['05', 'AI & software projects'],
-      ['01', 'Bank AI internship'],
+      ['02', 'Professional Experiences'],
       ['01', 'Hackathon medal (42h)'],
-      ['04', 'Certifications'],
+      ['05', 'Certifications'],
     ],
     exchangeTitle: 'Why an exchange semester',
     exchangeText:
@@ -197,6 +197,7 @@ export const content: Record<Lang, Content> = {
       { title: 'Generative AI with Diffusion Models', issuer: 'NVIDIA', url: '' },
       { title: 'AI Fundamentals', issuer: 'Cisco', url: '' },
       { title: 'Introduction to Data Science', issuer: 'Cisco', url: '' },
+      { title: 'Project Management Agile', issuer: 'HP', url: '' },
     ],
     view: 'View certificate',
     contactTitle: "Let's talk",
