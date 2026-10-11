@@ -31,8 +31,10 @@ export default function Page() {
     document.documentElement.lang = lang
   }, [lang])
 
-  const num = (id: string) => String(sectionIds.indexOf(id) + 1).padStart(2, '0')
-  const eyebrow = (id: string) => `${num(id)} / ${t.nav[sectionIds.indexOf(id)]}`
+  // Numérotation automatique : si une section n'est pas dans sectionIds, on n'affiche rien (pas de "00 / undefined").
+  const index = (id: string) => sectionIds.indexOf(id)
+  const num = (id: string) => (index(id) < 0 ? '' : String(index(id) + 1).padStart(2, '0'))
+  const eyebrow = (id: string) => (index(id) < 0 ? '' : `${num(id)} / ${t.nav[index(id)] ?? ''}`)
 
   const reveal = {
     initial: { opacity: 0, y: reduce ? 0 : 24 },
@@ -136,17 +138,7 @@ export default function Page() {
               </div>
             </div>
           </motion.div>
-        </Section>
-
-        <Section number={num('exchange')} id="exchange">
-          <motion.div {...reveal}>
-            <div className="section-heading">
-              <div>
-                <p className="eyebrow">{eyebrow('exchange')}</p>
-                <h2>{t.exchangeTitle}</h2>
-              </div>
-              <p className="skills-intro">{t.exchangeText}</p>
-            </div>
+          <motion.div {...reveal} className="about-bring">
             <p className="eyebrow">{t.bring}</p>
             <div className="three-columns">
               {t.columns.map(([title, text], i) => (
