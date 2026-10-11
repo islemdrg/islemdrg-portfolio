@@ -3,6 +3,7 @@ import type { Metadata, Viewport } from 'next'
 import './globals.css'
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://islemdrg-portfolio.vercel.app'),
   title: 'Islem Darghouth — AI Engineering Student',
   description: 'Portfolio of Islem Darghouth, an AI Engineering student at ESPRIT focused on LLMs, deep learning, NLP and computer vision.',
   generator: 'Next.js',
@@ -10,6 +11,13 @@ export const metadata: Metadata = {
     title: 'Islem Darghouth — AI Engineering Student',
     description: 'AI Engineering student at ESPRIT building useful systems with language, vision and data.',
     type: 'website',
+    images: [{ url: '/og-image.png', width: 1200, height: 630, alt: 'Islem Darghouth, AI Engineering Student at ESPRIT' }],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Islem Darghouth — AI Engineering Student',
+    description: 'AI Engineering student at ESPRIT building useful systems with language, vision and data.',
+    images: ['/og-image.png'],
   },
   icons: {
     icon: [
