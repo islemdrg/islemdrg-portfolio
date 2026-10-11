@@ -21,7 +21,7 @@ export const cvFiles = {
 }
 
 // Ordre des sections (doit correspondre aux id dans page.tsx)
-export const sectionIds = ['about', 'exchange', 'skills', 'experience', 'projects', 'credentials', 'contact']
+export const sectionIds = ['about', 'skills', 'experience', 'projects', 'credentials', 'contact']
 
 export type Project = {
   title: string
@@ -46,8 +46,6 @@ export type Content = {
   aboutTitle: string
   about: string
   stats: string[][]
-  exchangeTitle: string
-  exchangeText: string
   bring: string
   columns: string[][]
   recommendation: string
@@ -87,7 +85,7 @@ export type Content = {
 
 export const content: Record<Lang, Content> = {
   en: {
-    nav: ['About', 'Exchange', 'Skills', 'Experience', 'Projects', 'Credentials', 'Contact'],
+    nav: ['About','Skills', 'Experience', 'Projects', 'Credentials', 'Contact'],
     heroKicker: 'Artificial Intelligence Engineering · ESPRIT · Tunis',
     heroTitle: "Hi, I'm Islem Darghouth",
     heroSub: 'AI Engineering Student at ESPRIT | LLMs, Deep Learning, NLP & Computer Vision',
@@ -103,9 +101,7 @@ export const content: Record<Lang, Content> = {
       ['01', 'Hackathon medal (42h)'],
       ['05', 'Certifications'],
     ],
-    exchangeTitle: 'Why an exchange semester',
-    exchangeText:
-      'I am applying for the S9 exchange semester (September 2027) to study AI in an international setting, strengthen my research and engineering skills, and bring that experience back to ESPRIT.',
+   
     bring: 'What I bring',
     columns: [
       ['Academic profile', '4th-year student · 2nd year of the engineering cycle at ESPRIT · French B2 · English B2'],
@@ -234,9 +230,6 @@ export const content: Record<Lang, Content> = {
       ['01', 'Médaille hackathon (42h)'],
       ['04', 'Certifications'],
     ],
-    exchangeTitle: 'Pourquoi un semestre d’échange',
-    exchangeText:
-      'Je candidate au semestre d’échange S9 (septembre 2027) pour étudier l’IA dans un cadre international, renforcer mes compétences de recherche et d’ingénierie, et rapporter cette expérience à ESPRIT.',
     bring: 'Ce que j’apporte',
     columns: [
       ['Profil académique', 'Étudiante en 4e année · 2e année du cycle ingénieur à ESPRIT · Français B2 · Anglais B2'],
